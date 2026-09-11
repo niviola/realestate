@@ -1,0 +1,292 @@
+/* Listings + listing detail styles. Change these variables to match the rest of the site. */
+.lx-page {
+  --lx-ink: #1d2a30;
+  --lx-muted: #5b6b72;
+  --lx-water: #1f5a6b;
+  --lx-line: #d8dfe0;
+  --lx-surface: #eef2f1;
+  --lx-error: #9b2c2c;
+
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+  color: var(--lx-ink);
+}
+
+.lx-page a {
+  color: var(--lx-water);
+}
+
+.lx-intro {
+  max-width: 60ch;
+  margin-bottom: 2.5rem;
+}
+
+.lx-intro h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.75rem;
+}
+
+.lx-intro p {
+  color: var(--lx-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.lx-note {
+  color: var(--lx-muted);
+  line-height: 1.6;
+}
+
+.lx-error {
+  color: var(--lx-error);
+  margin: 0;
+}
+
+/* Grid of listing cards */
+.lx-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2.5rem 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.lx-page .lx-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.lx-card-link:focus-visible {
+  outline: 3px solid var(--lx-water);
+  outline-offset: 4px;
+}
+
+.lx-card-link:hover h2 {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lx-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--lx-surface);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--lx-muted);
+  font-size: 0.95rem;
+}
+
+.lx-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lx-status {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--lx-ink);
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.lx-card-body {
+  padding-top: 1rem;
+}
+
+.lx-card-body h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.35rem;
+}
+
+.lx-price {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--lx-water);
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 0.25rem;
+}
+
+.lx-meta {
+  color: var(--lx-muted);
+  margin: 0 0 0.2rem;
+}
+
+/* Detail page */
+.lx-back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.lx-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.lx-detail h1 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.15;
+  margin: 0 0 0.5rem;
+}
+
+.lx-photo-large {
+  aspect-ratio: 3 / 2;
+  margin-bottom: 0.75rem;
+}
+
+.lx-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.lx-thumbs button {
+  flex: 0 0 88px;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+}
+
+.lx-thumbs button[aria-current='true'] {
+  border-color: var(--lx-water);
+}
+
+.lx-thumbs button:focus-visible {
+  outline: 3px solid var(--lx-water);
+  outline-offset: 2px;
+}
+
+.lx-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lx-price-large {
+  font-size: 2.2rem;
+  margin: 1rem 0 0.25rem;
+}
+
+.lx-description {
+  line-height: 1.7;
+  max-width: 68ch;
+  margin-top: 1.5rem;
+  white-space: pre-line;
+}
+
+/* Inquiry panel */
+.lx-aside {
+  position: sticky;
+  top: 1.5rem;
+  border: 1px solid var(--lx-line);
+  background: #fff;
+  padding: 1.5rem;
+}
+
+.lx-aside h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+}
+
+.lx-aside > p {
+  color: var(--lx-muted);
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+
+.lx-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.lx-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.lx-optional {
+  font-weight: 400;
+  color: var(--lx-muted);
+}
+
+.lx-form input,
+.lx-form textarea {
+  font: inherit;
+  color: inherit;
+  background: #fff;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #b9c4c6;
+  border-radius: 4px;
+}
+
+.lx-form input:focus-visible,
+.lx-form textarea:focus-visible {
+  outline: 2px solid var(--lx-water);
+  outline-offset: 1px;
+  border-color: var(--lx-water);
+}
+
+.lx-form button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  border: 0;
+  border-radius: 4px;
+  background: var(--lx-water);
+  color: #fff;
+  cursor: pointer;
+}
+
+.lx-form button:focus-visible {
+  outline: 3px solid var(--lx-ink);
+  outline-offset: 2px;
+}
+
+.lx-form button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* Honeypot field: hidden from people, visible to spam bots */
+.lx-form .lx-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+
+.lx-confirm {
+  background: var(--lx-surface);
+  border-left: 3px solid var(--lx-water);
+  padding: 1rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .lx-detail {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .lx-aside {
+    position: static;
+  }
+}

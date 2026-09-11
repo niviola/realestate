@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { routes } from './routes';
+import ListingDetail from './pages/ListingDetail';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         {routes.map((r) => (
           <Route key={r.path} path={r.path} element={r.element} />
         ))}
+        <Route path="/listings/:id" element={<ListingDetail />} />
       </Routes>
     </>
   );
