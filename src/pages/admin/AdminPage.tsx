@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react'
 import type { ChangeEvent } from 'react'
+import { NavLink, useParams } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import './admin.css'
 
 const BUCKET = 'listing-photos'
-const PAGE = 'home'
+
+const PAGES: { slug: string; label: string }[] = [
+  { slug: 'home', label: 'Home' },
+  { slug: 'about', label: 'About' },
+]
 
 type Block = {
   id: string
@@ -26,6 +31,8 @@ const LAYOUTS: { value: Block['layout']; label: string }[] = [
 ]
 
 export default function AdminPage() {
+  const { slug = 'home' } = useParams()
+  const page = PAGES.find((p) => p.slug === slug) ?? PAGES[0]
   const [blocks, setBlocks] = useState<Block[]>([])
   const [loading, setLoading] = useState(true)
   const [savingId, setSavingId] = useState<string | null>(null)
@@ -35,7 +42,7 @@ export default function AdminPage() {
     const { data, error } = await supabase
       .from('page_blocks')
       .select('*')
-      .eq('page_slug', PAGE)
+      .eq('page_slug', page.slug)
       .order('sort_order')
 
     if (error) console.error(error)
@@ -44,8 +51,10 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
+    setLoading(true)
     load()
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page.slug])
 
   function edit(id: string, field: keyof Block, value: unknown) {
     setBlocks((bs) => bs.map((b) => (b.id === id ? { ...b, [field]: value } : b)))
@@ -80,7 +89,7 @@ export default function AdminPage() {
       blocks.length === 0 ? 0 : Math.max(...blocks.map((b) => b.sort_order)) + 1
 
     const { error } = await supabase.from('page_blocks').insert({
-      page_slug: PAGE,
+      page_slug: page.slug,
       sort_order: nextOrder,
       layout: 'text',
       heading: 'New section',
@@ -118,7 +127,7 @@ export default function AdminPage() {
     if (!file) return
 
     const ext = file.name.split('.').pop() ?? 'jpg'
-    const path = `pages/${PAGE}/${crypto.randomUUID()}.${ext}`
+    const path = `pages/${page.slug}/${crypto.randomUUID()}.${ext}`
 
     const { error: upErr } = await supabase.storage
       .from(BUCKET)
@@ -141,11 +150,19 @@ export default function AdminPage() {
   return (
     <main>
       <div className="ad-head">
-        <h1>Home page</h1>
+        <h1>{page.label} page</h1>
         <button type="button" onClick={addBlock}>
           Add section
         </button>
       </div>
+
+      <nav className="ad-subtabs">
+        {PAGES.map((p) => (
+          <NavLink key={p.slug} to={`/admin/pages/${p.slug}`}>
+            {p.label}
+          </NavLink>
+        ))}
+      </nav>
 
       <p className="ad-hint">
         Sections appear on the page in this order. Hidden sections stay off the

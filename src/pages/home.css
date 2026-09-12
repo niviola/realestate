@@ -13,7 +13,7 @@
   position: relative;
   min-height: 60svh;
   display: grid;
-  align-items: end;
+  align-items: start;
   background: var(--hm-surface);
   margin-bottom: 4rem;
 }
@@ -25,6 +25,11 @@
   min-height: 60svh;
   object-fit: cover;
   display: block;
+}
+
+.hm-hero:not(:has(.hm-image)) {
+  min-height: auto;
+  padding: 3rem 0;
 }
 
 .hm-hero-text {
@@ -40,8 +45,8 @@
 /* When a photo is behind the text, keep the words readable */
 .hm-hero:has(.hm-image) .hm-hero-text {
   color: #fff;
-  background: linear-gradient(to top, rgba(12, 26, 31, 0.85), rgba(12, 26, 31, 0));
-  padding-top: 6rem;
+  background: linear-gradient(to bottom, rgba(12, 26, 31, 0.85), rgba(12, 26, 31, 0));
+  padding-bottom: 6rem;
 }
 
 .hm-hero:has(.hm-image) .hm-cta {

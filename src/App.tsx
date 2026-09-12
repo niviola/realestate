@@ -24,7 +24,7 @@ function App() {
         <Route path="/admin/listings/:id" element={<AdminListingEdit />} />
         <Route path="/admin/inquiries" element={<AdminInquiries />} />
         </Route>
-        <Route path="/admin/pages" element={<AdminPage />} />
+        <Route path="/admin/pages/:slug" element={<AdminPage />} />
       </Routes>
     </>
   );

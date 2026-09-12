@@ -1,5 +1,5 @@
-function About() {
-  return <h1>About Page</h1>;
-}
+import PageSections from '../components/PageSections'
 
-export default About;
+export default function About() {
+  return <PageSections slug="about" />
+}
