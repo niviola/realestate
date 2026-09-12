@@ -3,12 +3,14 @@ import type { FormEvent } from 'react'
 import { supabase } from '../lib/supabase'
 
 type Props = {
-  listingId: string
+  /** Omit on the contact page — the inquiry is then not tied to a listing. */
+  listingId?: string
+  placeholder?: string
 }
 
 type SendState = 'idle' | 'sending' | 'sent' | 'error'
 
-export default function InquiryForm({ listingId }: Props) {
+export default function InquiryForm({ listingId, placeholder }: Props) {
   const [state, setState] = useState<SendState>('idle')
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -25,7 +27,7 @@ export default function InquiryForm({ listingId }: Props) {
 
     // No .select() here: visitors can add inquiries but aren't allowed to read them back.
     const { error } = await supabase.from('inquiries').insert({
-      listing_id: listingId,
+      listing_id: listingId ?? null,
       name: String(form.get('name') ?? '').trim(),
       email: String(form.get('email') ?? '').trim(),
       phone: String(form.get('phone') ?? '').trim() || null,
@@ -43,7 +45,7 @@ export default function InquiryForm({ listingId }: Props) {
   if (state === 'sent') {
     return (
       <p className="lx-confirm" role="status">
-        Inquiry sent. We'll follow up by email soon.
+        Message sent. We'll follow up by email soon.
       </p>
     )
   }
@@ -73,8 +75,11 @@ export default function InquiryForm({ listingId }: Props) {
         </span>
         <textarea
           name="message"
-          rows={4}
-          placeholder="I'm in Ohio and considering a second home. Is a video tour possible?"
+          rows={5}
+          placeholder={
+            placeholder ??
+            "I'm in Ohio and considering a second home. Is a video tour possible?"
+          }
         />
       </label>
 
@@ -88,12 +93,12 @@ export default function InquiryForm({ listingId }: Props) {
 
       {state === 'error' && (
         <p className="lx-error" role="alert">
-          Your inquiry didn't go through. Check your connection and send it again.
+          Your message didn't go through. Check your connection and send it again.
         </p>
       )}
 
       <button type="submit" disabled={state === 'sending'}>
-        {state === 'sending' ? 'Sending…' : 'Send inquiry'}
+        {state === 'sending' ? 'Sending…' : 'Send message'}
       </button>
     </form>
   )

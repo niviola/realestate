@@ -290,3 +290,28 @@
     position: static;
   }
 }
+
+/* ---- Contact page  ---- */
+
+.lx-contact-grid {
+  display: grid;
+  grid-template-columns: 400px minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.lx-contact-grid h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.lx-contact-grid section:last-child p {
+  max-width: 46ch;
+}
+
+@media (max-width: 860px) {
+  .lx-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
