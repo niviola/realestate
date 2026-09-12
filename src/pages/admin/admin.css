@@ -276,3 +276,72 @@
   line-height: 1.6;
   margin: 0.5rem 0 1rem;
 }
+
+/* ---- Page editor (append to the end of admin.css) ---- */
+
+.ad-blocks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.ad-blocks > li {
+  border: 1px solid var(--ad-line);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.ad-blocks .ad-form {
+  margin-bottom: 0;
+}
+
+.ad-block-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--ad-line);
+}
+
+.ad-block-bar select {
+  font: inherit;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #b9c4c6;
+  border-radius: 4px;
+  background: #fff;
+  color: inherit;
+}
+
+.ad-block-bar button {
+  padding: 0.35rem 0.7rem;
+  background: var(--ad-surface);
+  color: var(--ad-ink);
+  border: 1px solid var(--ad-line);
+}
+
+.ad-check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  margin-right: auto;
+}
+
+.ad-check input {
+  width: auto;
+  margin: 0;
+}
+
+.ad-block-image img {
+  max-width: 320px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 0.5rem;
+  background: var(--ad-surface);
+}

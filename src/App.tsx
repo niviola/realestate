@@ -7,6 +7,7 @@ import AdminLayout from './pages/admin/AdminLayout';
 import AdminListings from './pages/admin/AdminListings';
 import AdminListingEdit from './pages/admin/AdminListingEdit';
 import AdminInquiries from './pages/admin/AdminInquiries';
+import AdminPage from './pages/admin/AdminPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/admin/listings/:id" element={<AdminListingEdit />} />
         <Route path="/admin/inquiries" element={<AdminInquiries />} />
         </Route>
+        <Route path="/admin/pages" element={<AdminPage />} />
       </Routes>
     </>
   );

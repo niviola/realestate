@@ -24,6 +24,7 @@ export default function AdminLayout() {
         <nav className="ad-tabs">
           <NavLink to="/admin/listings">Listings</NavLink>
           <NavLink to="/admin/inquiries">Inquiries</NavLink>
+          <NavLink to="/admin/pages">Home page</NavLink>
         </nav>
         <button
           type="button"
