@@ -55,11 +55,11 @@
 }
 
 .hm-hero h1 {
-  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
   line-height: 1.08;
   letter-spacing: -0.015em;
   margin: 0 0 1rem;
-  max-width: 18ch;
+  max-width: 26ch;
 }
 
 /* Sections */
